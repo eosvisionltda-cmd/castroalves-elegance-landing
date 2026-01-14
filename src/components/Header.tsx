@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import logo from '@/assets/logo-castro-alves.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,20 +33,20 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md py-4 shadow-lg'
-          : 'bg-transparent py-6'
+          ? 'bg-background/95 backdrop-blur-md py-3 shadow-lg'
+          : 'bg-transparent py-4'
       }`}
     >
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
-          className="font-serif text-2xl md:text-3xl tracking-wide text-foreground"
-        >
-          <span className="text-primary">CASTRO ALVES</span>
-          <span className="block text-xs tracking-[0.4em] uppercase font-sans font-light text-foreground/70">
-            Construções
-          </span>
+        <a href="#" className="flex-shrink-0">
+          <img
+            src={logo}
+            alt="Castro Alves Construções"
+            className={`transition-all duration-300 ${
+              isScrolled ? 'h-12 md:h-14' : 'h-14 md:h-16'
+            }`}
+          />
         </a>
 
         {/* Desktop Navigation */}

@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import logo from '@/assets/logo-castro-alves.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,11 +10,12 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Logo & Description */}
           <div>
-            <a href="#" className="font-serif text-2xl tracking-wide text-foreground">
-              <span className="text-primary">CASTRO ALVES</span>
-              <span className="block text-xs tracking-[0.4em] uppercase font-sans font-light text-foreground/70">
-                Construções
-              </span>
+            <a href="#">
+              <img
+                src={logo}
+                alt="Castro Alves Construções"
+                className="h-16 md:h-20"
+              />
             </a>
             <p className="text-muted-foreground font-sans text-sm mt-4 leading-relaxed max-w-xs">
               Transformando projetos em realidade com excelência, sofisticação e
