@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { Send, Loader2 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Nome é obrigatório').max(100),
@@ -30,21 +31,24 @@ const ContactForm = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const { error } = await supabase.functions.invoke('send-email', {
+        body: {
+          ...data,
+          source: 'contact_form',
+        },
+      });
 
-    // Create mailto link
-    const mailtoLink = `mailto:construcoescastroalves@gmail.com?subject=${encodeURIComponent(
-      data.subject || 'Contato pelo site'
-    )}&body=${encodeURIComponent(
-      `Nome: ${data.name}\nTelefone: ${data.phone}\nEmail: ${data.email || 'Não informado'}\n\nMensagem:\n${data.message || 'Sem mensagem adicional'}`
-    )}`;
+      if (error) throw error;
 
-    window.open(mailtoLink, '_blank');
-
-    toast.success('Mensagem preparada! Verifique seu cliente de email.');
-    reset();
-    setIsSubmitting(false);
+      toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+      reset();
+    } catch (err) {
+      console.error('Error sending email:', err);
+      toast.error('Erro ao enviar mensagem. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

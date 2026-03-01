@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { X, MessageCircle, Send } from 'lucide-react';
+import { X, MessageCircle, Send, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 const whatsappSchema = z.object({
   name: z.string().min(2, 'Nome é obrigatório').max(100),
@@ -14,6 +16,7 @@ type WhatsAppFormData = z.infer<typeof whatsappSchema>;
 
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -24,14 +27,33 @@ const WhatsAppButton = () => {
     resolver: zodResolver(whatsappSchema),
   });
 
-  const onSubmit = (data: WhatsAppFormData) => {
-    const message = `Olá! Meu nome é ${data.name}.\nTelefone: ${data.phone}\nAssunto: ${data.subject}`;
-    const phoneNumber = '5511986656269';
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const onSubmit = async (data: WhatsAppFormData) => {
+    setIsSubmitting(true);
 
-    window.open(whatsappUrl, '_blank');
-    reset();
-    setIsOpen(false);
+    try {
+      // Send email in background
+      supabase.functions.invoke('send-email', {
+        body: {
+          ...data,
+          source: 'whatsapp',
+        },
+      }).catch((err) => console.error('Email send error:', err));
+
+      // Open WhatsApp immediately
+      const message = `Olá! Meu nome é ${data.name}.\nTelefone: ${data.phone}\nAssunto: ${data.subject}`;
+      const phoneNumber = '5511986656269';
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+
+      toast.success('Dados enviados! Abrindo WhatsApp...');
+      reset();
+      setIsOpen(false);
+    } catch (err) {
+      console.error('Error:', err);
+      toast.error('Erro ao processar. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -43,7 +65,6 @@ const WhatsAppButton = () => {
         aria-label="Abrir WhatsApp"
       >
         <MessageCircle size={28} className="text-foreground" />
-        {/* Pulse effect */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />
       </button>
 
@@ -78,7 +99,6 @@ const WhatsAppButton = () => {
 
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              {/* Name */}
               <div>
                 <label className="block text-sm font-sans text-foreground/70 mb-2">
                   Nome *
@@ -90,13 +110,10 @@ const WhatsAppButton = () => {
                   className="input-field"
                 />
                 {errors.name && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.name.message}
-                  </p>
+                  <p className="text-destructive text-sm mt-1">{errors.name.message}</p>
                 )}
               </div>
 
-              {/* Phone */}
               <div>
                 <label className="block text-sm font-sans text-foreground/70 mb-2">
                   Telefone *
@@ -108,13 +125,10 @@ const WhatsAppButton = () => {
                   className="input-field"
                 />
                 {errors.phone && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.phone.message}
-                  </p>
+                  <p className="text-destructive text-sm mt-1">{errors.phone.message}</p>
                 )}
               </div>
 
-              {/* Subject */}
               <div>
                 <label className="block text-sm font-sans text-foreground/70 mb-2">
                   Assunto *
@@ -126,19 +140,26 @@ const WhatsAppButton = () => {
                   className="input-field"
                 />
                 {errors.subject && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.subject.message}
-                  </p>
+                  <p className="text-destructive text-sm mt-1">{errors.subject.message}</p>
                 )}
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
-                className="w-full py-4 bg-[#25D366] text-foreground font-sans font-medium uppercase tracking-wide text-sm flex items-center justify-center gap-3 hover:bg-[#20bd5a] transition-colors"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-[#25D366] text-foreground font-sans font-medium uppercase tracking-wide text-sm flex items-center justify-center gap-3 hover:bg-[#20bd5a] transition-colors disabled:opacity-50"
               >
-                <Send size={18} />
-                Abrir WhatsApp
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Abrir WhatsApp
+                  </>
+                )}
               </button>
             </form>
           </div>
