@@ -41,7 +41,7 @@ const WhatsAppButton = () => {
 
       // Open WhatsApp immediately
       const message = `Olá! Meu nome é ${data.name}.\nTelefone: ${data.phone}\nAssunto: ${data.subject}`;
-      const phoneNumber = '5511986656269';
+      const phoneNumber = '5511980515092';
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
 
