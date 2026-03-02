@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { Send, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 
 const contactSchema = z.object({
@@ -18,6 +19,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -41,8 +43,8 @@ const ContactForm = () => {
 
       if (error) throw error;
 
-      toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
       reset();
+      navigate('/cadastro');
     } catch (err) {
       console.error('Error sending email:', err);
       toast.error('Erro ao enviar mensagem. Tente novamente.');
