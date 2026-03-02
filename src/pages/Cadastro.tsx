@@ -8,7 +8,7 @@ const Cadastro = () => {
         <CheckCircle size={64} className="text-primary mx-auto mb-6" />
         <h1 className="section-heading mb-4">Mensagem Enviada!</h1>
         <p className="section-subtitle mx-auto mb-8">
-          Obrigado por entrar em contato. Nossa equipe receberá sua mensagem e retornará o mais breve possível.
+          Recebemos suas informações. Em breve entraremos em contato.
         </p>
         <Link to="/" className="btn-primary">
           Voltar ao Início

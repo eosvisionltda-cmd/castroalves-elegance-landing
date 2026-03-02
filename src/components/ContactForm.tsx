@@ -10,12 +10,21 @@ import { supabase } from '@/integrations/supabase/client';
 const contactSchema = z.object({
   name: z.string().min(2, 'Nome é obrigatório').max(100),
   phone: z.string().min(10, 'Telefone é obrigatório').max(20),
-  email: z.string().email('Email inválido').optional().or(z.literal('')),
-  subject: z.string().max(100).optional(),
+  email: z.string().email('Email inválido').max(255),
+  location: z.string().min(2, 'Localização é obrigatória').max(200),
+  area: z.string().min(1, 'Metragem é obrigatória').max(50),
+  serviceType: z.string().min(1, 'Selecione o tipo de serviço'),
   message: z.string().max(1000).optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
+
+const serviceOptions = [
+  'Construção',
+  'Reforma',
+  'Administração',
+  'Projeto',
+];
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,7 +69,7 @@ const ContactForm = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <span className="section-title">Contato</span>
-            <h2 className="section-heading mt-3 mb-4">Entre em Contato</h2>
+            <h2 className="section-heading mt-3 mb-4">Solicite um Orçamento</h2>
             <p className="section-subtitle mx-auto">
               Preencha o formulário abaixo e entraremos em contato em breve.
             </p>
@@ -72,7 +81,7 @@ const ContactForm = () => {
               {/* Name */}
               <div>
                 <label className="block text-sm font-sans text-foreground/70 mb-2">
-                  Nome *
+                  Nome Completo *
                 </label>
                 <input
                   {...register('name')}
@@ -81,9 +90,7 @@ const ContactForm = () => {
                   className="input-field"
                 />
                 {errors.name && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.name.message}
-                  </p>
+                  <p className="text-destructive text-sm mt-1">{errors.name.message}</p>
                 )}
               </div>
 
@@ -99,9 +106,7 @@ const ContactForm = () => {
                   className="input-field"
                 />
                 {errors.phone && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.phone.message}
-                  </p>
+                  <p className="text-destructive text-sm mt-1">{errors.phone.message}</p>
                 )}
               </div>
             </div>
@@ -110,7 +115,7 @@ const ContactForm = () => {
               {/* Email */}
               <div>
                 <label className="block text-sm font-sans text-foreground/70 mb-2">
-                  Email
+                  E-mail *
                 </label>
                 <input
                   {...register('email')}
@@ -119,34 +124,73 @@ const ContactForm = () => {
                   className="input-field"
                 />
                 {errors.email && (
-                  <p className="text-destructive text-sm mt-1">
-                    {errors.email.message}
-                  </p>
+                  <p className="text-destructive text-sm mt-1">{errors.email.message}</p>
                 )}
               </div>
 
-              {/* Subject */}
+              {/* Location */}
               <div>
                 <label className="block text-sm font-sans text-foreground/70 mb-2">
-                  Assunto
+                  Localização da Obra *
                 </label>
                 <input
-                  {...register('subject')}
+                  {...register('location')}
                   type="text"
-                  placeholder="Assunto do contato"
+                  placeholder="Cidade / Bairro"
                   className="input-field"
                 />
+                {errors.location && (
+                  <p className="text-destructive text-sm mt-1">{errors.location.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Area */}
+              <div>
+                <label className="block text-sm font-sans text-foreground/70 mb-2">
+                  Metragem Aproximada *
+                </label>
+                <input
+                  {...register('area')}
+                  type="text"
+                  placeholder="Ex: 120m²"
+                  className="input-field"
+                />
+                {errors.area && (
+                  <p className="text-destructive text-sm mt-1">{errors.area.message}</p>
+                )}
+              </div>
+
+              {/* Service Type */}
+              <div>
+                <label className="block text-sm font-sans text-foreground/70 mb-2">
+                  Tipo de Serviço *
+                </label>
+                <select
+                  {...register('serviceType')}
+                  className="input-field"
+                  defaultValue=""
+                >
+                  <option value="" disabled>Selecione...</option>
+                  {serviceOptions.map((opt) => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                {errors.serviceType && (
+                  <p className="text-destructive text-sm mt-1">{errors.serviceType.message}</p>
+                )}
               </div>
             </div>
 
             {/* Message */}
             <div>
               <label className="block text-sm font-sans text-foreground/70 mb-2">
-                Mensagem
+                Mensagem (opcional)
               </label>
               <textarea
                 {...register('message')}
-                rows={5}
+                rows={4}
                 placeholder="Conte-nos sobre seu projeto..."
                 className="input-field resize-none"
               />
@@ -167,7 +211,7 @@ const ContactForm = () => {
                 ) : (
                   <>
                     <Send size={18} />
-                    Enviar Mensagem
+                    Enviar Solicitação
                   </>
                 )}
               </button>
