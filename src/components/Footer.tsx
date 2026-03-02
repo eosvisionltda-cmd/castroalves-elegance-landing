@@ -19,7 +19,7 @@ const Footer = () => {
             </a>
             <p className="text-muted-foreground font-sans text-sm mt-4 leading-relaxed max-w-xs">
               Transformando projetos em realidade com excelência, sofisticação e
-              rigor técnico há mais de 15 anos.
+              rigor técnico há mais de 5 anos.
             </p>
           </div>
 

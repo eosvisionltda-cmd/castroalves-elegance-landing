@@ -8,12 +8,48 @@ import portfolio5 from '@/assets/portfolio-5.jpg';
 import portfolio6 from '@/assets/portfolio-6.jpg';
 
 const portfolioItems = [
-  { image: portfolio1, title: 'Sala de Estar', category: 'Reforma Residencial' },
-  { image: portfolio2, title: 'Cozinha Gourmet', category: 'Reforma Residencial' },
-  { image: portfolio3, title: 'Banheiro Master', category: 'Reforma Residencial' },
-  { image: portfolio4, title: 'Suíte Principal', category: 'Reforma Residencial' },
-  { image: portfolio5, title: 'Home Office', category: 'Reforma Comercial' },
-  { image: portfolio6, title: 'Varanda Gourmet', category: 'Reforma Residencial' },
+  {
+    image: portfolio1,
+    title: 'Reforma Residencial – São Paulo/SP',
+    type: 'Reforma completa',
+    area: '120m²',
+    description: 'Transformação completa de apartamento com acabamento premium.',
+  },
+  {
+    image: portfolio2,
+    title: 'Cozinha Gourmet – São Paulo/SP',
+    type: 'Reforma parcial',
+    area: '35m²',
+    description: 'Projeto moderno com ilha central e marcenaria sob medida.',
+  },
+  {
+    image: portfolio3,
+    title: 'Banheiro Master – Guarulhos/SP',
+    type: 'Reforma completa',
+    area: '18m²',
+    description: 'Banheiro de luxo com revestimentos importados.',
+  },
+  {
+    image: portfolio4,
+    title: 'Suíte Principal – São Paulo/SP',
+    type: 'Reforma completa',
+    area: '45m²',
+    description: 'Suíte com closet integrado e iluminação planejada.',
+  },
+  {
+    image: portfolio5,
+    title: 'Escritório Corporativo – São Paulo/SP',
+    type: 'Reforma comercial',
+    area: '200m²',
+    description: 'Espaço corporativo moderno e funcional.',
+  },
+  {
+    image: portfolio6,
+    title: 'Varanda Gourmet – São Paulo/SP',
+    type: 'Reforma parcial',
+    area: '28m²',
+    description: 'Área gourmet com churrasqueira e bancada em granito.',
+  },
 ];
 
 const Portfolio = () => {
@@ -35,26 +71,33 @@ const Portfolio = () => {
           </div>
 
           {/* Portfolio Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {portfolioItems.map((item, index) => (
               <div
                 key={index}
-                className="portfolio-item aspect-square rounded-sm"
+                className="portfolio-item rounded-sm overflow-hidden cursor-pointer group"
                 onClick={() => setSelectedImage(item.image)}
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-                {/* Hover overlay with info */}
-                <div className="absolute inset-0 z-10 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-xs uppercase tracking-wider text-primary font-sans">
-                    {item.category}
-                  </span>
-                  <span className="font-serif text-xl text-foreground">
-                    {item.title}
-                  </span>
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-primary font-sans text-sm uppercase tracking-wider">Ver Projeto</span>
+                  </div>
+                </div>
+                {/* Info */}
+                <div className="bg-card p-5">
+                  <h3 className="font-serif text-lg text-foreground mb-1">{item.title}</h3>
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground font-sans mb-2">
+                    <span>{item.type}</span>
+                    <span className="w-1 h-1 rounded-full bg-primary" />
+                    <span>{item.area}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground font-sans">{item.description}</p>
                 </div>
               </div>
             ))}

@@ -39,8 +39,8 @@ const About = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mt-10 mb-10">
               {[
-                { number: '15+', label: 'Anos de Experiência' },
-                { number: '200+', label: 'Projetos Entregues' },
+                { number: '5+', label: 'Anos de Experiência' },
+                { number: '10.000+', label: 'm² Executados' },
                 { number: '100%', label: 'Satisfação' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center lg:text-left">
