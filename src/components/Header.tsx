@@ -43,8 +43,8 @@ const Header = () => {
           <img
             src={logo}
             alt="Castro Alves Construções"
-            className={`transition-all duration-300 ${
-              isScrolled ? 'h-12 md:h-14' : 'h-14 md:h-16'
+            className={`transition-all duration-500 ${
+              isScrolled ? 'h-14 md:h-16' : 'h-20 md:h-28'
             }`}
           />
         </a>

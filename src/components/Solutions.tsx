@@ -1,32 +1,28 @@
-import { Ruler, Hammer, HardHat, PenTool } from 'lucide-react';
 import serviceConstruction from '@/assets/service-construction.jpg';
 import serviceRenovation from '@/assets/service-renovation.jpg';
 import serviceManagement from '@/assets/service-management.jpg';
+import serviceProject from '@/assets/service-project.jpg';
 
 const solutions = [
   {
     title: 'Construção',
     description: 'Edificações residenciais e comerciais de alto padrão',
     image: serviceConstruction,
-    icon: HardHat,
   },
   {
     title: 'Obras e Reformas',
     description: 'Transformação de espaços com excelência e sofisticação',
     image: serviceRenovation,
-    icon: Hammer,
   },
   {
     title: 'Gerenciamento de Obras',
     description: 'Gestão completa do seu projeto do início ao fim',
     image: serviceManagement,
-    icon: Ruler,
   },
   {
     title: 'Projetos',
     description: 'Desenvolvimento de projetos executivos com precisão técnica',
-    image: serviceConstruction,
-    icon: PenTool,
+    image: serviceProject,
   },
 ];
 
@@ -47,12 +43,10 @@ const Solutions = () => {
 
         {/* Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {solutions.map((solution, index) => {
-            const Icon = solution.icon;
-            return (
+          {solutions.map((solution, index) => (
               <div
                 key={solution.title}
-                className="card-service h-[400px] md:h-[500px] rounded-sm overflow-hidden"
+                className="card-service group h-[400px] md:h-[500px] rounded-sm overflow-hidden"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 {/* Background Image */}
@@ -64,7 +58,6 @@ const Solutions = () => {
 
                 {/* Content */}
                 <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
-                  <Icon size={32} className="text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-2" />
                   <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-2 transition-transform duration-300 group-hover:-translate-y-2">
                     {solution.title}
                   </h3>
@@ -73,8 +66,7 @@ const Solutions = () => {
                   </p>
                 </div>
               </div>
-            );
-          })}
+            ))}
         </div>
       </div>
     </section>
