@@ -14,7 +14,7 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Castro Alves Construções"
-                className="h-24 md:h-32"
+                className="h-28 md:h-36"
               />
             </a>
             <p className="text-muted-foreground font-sans text-sm mt-4 leading-relaxed max-w-xs">
