@@ -34,7 +34,7 @@ const Solutions = () => {
         <div className="text-center mb-16">
           <span className="section-title">Nossas Soluções</span>
           <h2 className="section-heading mt-3 mb-4">
-            Expertise em cada etapa
+            Gestão completa de obras com expertise em cada etapa
           </h2>
           <p className="section-subtitle mx-auto">
             Do planejamento à execução, cuidamos de cada etapa da sua obra.
@@ -50,10 +50,11 @@ const Solutions = () => {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 {/* Background Image */}
-                <img
+              <img
                   src={solution.image}
-                  alt={solution.title}
+                  alt={`${solution.title} de alto padrão em São Paulo - Castro Alves Construções`}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
                 />
 
                 {/* Content */}

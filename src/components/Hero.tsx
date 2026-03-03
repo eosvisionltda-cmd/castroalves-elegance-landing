@@ -32,7 +32,7 @@ const Hero = () => {
             className="section-heading text-5xl md:text-6xl lg:text-7xl mb-6 animate-fade-up"
             style={{ animationDelay: '0.2s' }}
           >
-            Soluções completas em construção
+            Construtora de Alto Padrão em São Paulo
           </h1>
 
           {/* Subtitle */}

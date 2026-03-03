@@ -25,9 +25,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg text-foreground mb-4">
+            <h3 className="font-serif text-lg text-foreground mb-4">
               Links Rápidos
-            </h4>
+            </h3>
             <ul className="space-y-3">
               {[
                 { href: '#quem-somos', label: 'Quem Somos' },
@@ -49,7 +49,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-serif text-lg text-foreground mb-4">Contato</h4>
+            <h3 className="font-serif text-lg text-foreground mb-4">Contato</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-muted-foreground font-sans text-sm">
                 <Phone size={18} className="text-primary flex-shrink-0 mt-0.5" />
