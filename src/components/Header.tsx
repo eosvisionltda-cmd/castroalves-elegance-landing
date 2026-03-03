@@ -44,7 +44,7 @@ const Header = () => {
             src={logo}
             alt="Castro Alves Construções"
             className={`transition-all duration-500 ${
-              isScrolled ? 'h-14 md:h-16' : 'h-20 md:h-28'
+              isScrolled ? 'h-16 md:h-20' : 'h-24 md:h-36'
             }`}
           />
         </a>
