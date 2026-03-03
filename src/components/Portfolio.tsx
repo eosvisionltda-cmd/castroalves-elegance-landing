@@ -61,9 +61,9 @@ const Portfolio = () => {
         <div className="container-custom">
           {/* Header */}
           <div className="text-center mb-16">
-            <span className="section-title">Nosso Portfólio</span>
+          <span className="section-title">Nosso Portfólio</span>
             <h2 className="section-heading mt-3 mb-4">
-              Projetos realizados
+              Obras residenciais e corporativas premium
             </h2>
             <p className="section-subtitle mx-auto">
               Confira alguns de nossos projetos realizados.
@@ -81,8 +81,9 @@ const Portfolio = () => {
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <img
                     src={item.image}
-                    alt={item.title}
+                    alt={`${item.title} - Obra de alto padrão Castro Alves`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                   />
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

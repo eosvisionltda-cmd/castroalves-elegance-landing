@@ -69,7 +69,7 @@ const ContactForm = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <span className="section-title">Contato</span>
-            <h2 className="section-heading mt-3 mb-4">Solicite um Orçamento</h2>
+            <h2 className="section-heading mt-3 mb-4">Solicite seu orçamento de construção premium</h2>
             <p className="section-subtitle mx-auto">
               Preencha o formulário abaixo e entraremos em contato em breve.
             </p>

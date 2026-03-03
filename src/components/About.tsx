@@ -16,23 +16,21 @@ const About = () => {
           <div className="order-2 lg:order-1">
             <span className="section-title">Quem Somos</span>
             <h2 className="section-heading mt-3 mb-8">
-              Castro Alves Construções
+              Construção de alto padrão em São Paulo
             </h2>
 
             <div className="space-y-6 text-foreground/80 font-sans leading-relaxed">
               <p>
-                Somos uma empresa de engenharia especializada em projetos e
-                construções de alto padrão, unindo excelência técnica, inovação
-                e sofisticação em cada detalhe.
+                A <strong>Castro Alves Construções</strong> é uma empresa de engenharia especializada em <strong>construção de alto padrão em São Paulo</strong>, 
+                unindo excelência técnica, inovação e sofisticação em cada detalhe. Atuamos com <strong>obras no Centro de São Paulo</strong> e em toda a região metropolitana.
               </p>
               <p>
-                Nosso compromisso é transformar ideias em obras de referência,
-                com soluções inteligentes, seguras e de qualidade.
+                Nosso compromisso é transformar ideias em obras de referência, atendendo projetos de <strong>condomínios de luxo</strong>, 
+                residências premium e espaços corporativos com soluções inteligentes, seguras e de qualidade.
               </p>
               <p>
-                Com uma equipe de engenheiros altamente qualificados, atuamos
-                desde o planejamento até a entrega final, garantindo
-                transparência, qualidade e rigor técnico.
+                Com uma equipe de engenheiros altamente qualificados, oferecemos <strong>gestão completa de obras</strong> — 
+                desde o planejamento até a entrega final — garantindo transparência, qualidade e rigor técnico em cada etapa.
               </p>
             </div>
 
@@ -64,8 +62,9 @@ const About = () => {
             <div className="relative overflow-hidden rounded-sm">
               <img
                 src={aboutImage}
-                alt="Ferramentas de engenharia e plantas"
+                alt="Ferramentas de engenharia e plantas para construção de alto padrão em São Paulo"
                 className="w-full h-[400px] lg:h-[600px] object-cover"
+                loading="lazy"
               />
               {/* Decorative element */}
               <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-primary/30 -z-10" />
