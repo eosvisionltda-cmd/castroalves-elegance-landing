@@ -22,15 +22,15 @@ const About = () => {
             <div className="space-y-6 text-foreground/80 font-sans leading-relaxed">
               <p>
                 A <strong>Castro Alves Construções</strong> é uma empresa de engenharia especializada em <strong>construção de alto padrão em São Paulo</strong>, 
-                unindo excelência técnica, inovação e sofisticação em cada detalhe. Atuamos com <strong>obras no Centro de São Paulo</strong> e em toda a região metropolitana.
+                unindo excelência técnica, inovação e sofisticação em cada detalhe. Atuamos com <strong>obras no Centro de São Paulo</strong> e em todo o estado de São Paulo.
               </p>
               <p>
                 Nosso compromisso é transformar ideias em obras de referência, atendendo projetos de <strong>condomínios de luxo</strong>, 
-                residências premium e espaços corporativos com soluções inteligentes, seguras e de qualidade.
+                residências premium e espaços corporativos em todo o estado, com soluções inteligentes, seguras e de qualidade.
               </p>
               <p>
-                Com uma equipe de engenheiros altamente qualificados, oferecemos <strong>gestão completa de obras</strong> — 
-                desde o planejamento até a entrega final — garantindo transparência, qualidade e rigor técnico em cada etapa.
+                Com uma equipe de engenheiros altamente qualificados, oferecemos <strong>gestão completa de obras</strong>, 
+                desde o planejamento até a entrega final, garantindo transparência, qualidade e rigor técnico em cada etapa.
               </p>
             </div>
 
