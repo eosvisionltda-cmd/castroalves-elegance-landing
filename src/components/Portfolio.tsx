@@ -38,6 +38,14 @@ const portfolioItems: PortfolioItem[] = [
     description: 'Projeto residencial de alto padrão com acabamentos sofisticados, marcenaria sob medida e iluminação cênica em cada ambiente.',
   },
   {
+    cover: kmObra6,
+    images: [kmObra6, kmObra5, kmObra1, kmObra3, kmObra2, kmObra4],
+    title: 'Obra K|M – Jardim Paulista/SP',
+    type: 'Gerenciamento e execução',
+    area: '350m²',
+    description: 'Residência ampla com ambientes integrados, acabamentos clean e design contemporâneo no coração do Jardim Paulista.',
+  },
+  {
     cover: portfolio1,
     images: [portfolio1],
     title: 'Reforma Residencial – São Paulo/SP',
