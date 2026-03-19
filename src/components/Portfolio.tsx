@@ -52,7 +52,7 @@ const portfolioItems: PortfolioItem[] = [
     cover: epObra5,
     images: [epObra5, epObra4, epObra6, epObra3, epObra2, epObra1],
     title: 'Obra E|P – Jardim Paulista/SP',
-    type: 'Gerenciamento e execução',
+    type: 'Execução',
     area: '250m²',
     description: 'Apartamento sofisticado com mármore calacata, mobiliário de design autoral e iluminação indireta em todos os ambientes.',
   },
