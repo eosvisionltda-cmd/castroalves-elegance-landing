@@ -12,6 +12,12 @@ import ogObra3 from '@/assets/og-obra-3.webp';
 import ogObra4 from '@/assets/og-obra-4.webp';
 import ogObra5 from '@/assets/og-obra-5.webp';
 import ogObra6 from '@/assets/og-obra-6.webp';
+import kmObra1 from '@/assets/km-obra-1.webp';
+import kmObra2 from '@/assets/km-obra-2.webp';
+import kmObra3 from '@/assets/km-obra-3.webp';
+import kmObra4 from '@/assets/km-obra-4.webp';
+import kmObra5 from '@/assets/km-obra-5.webp';
+import kmObra6 from '@/assets/km-obra-6.webp';
 
 interface PortfolioItem {
   cover: string;
@@ -30,6 +36,14 @@ const portfolioItems: PortfolioItem[] = [
     type: 'Gerenciamento e execução',
     area: '200m²',
     description: 'Projeto residencial de alto padrão com acabamentos sofisticados, marcenaria sob medida e iluminação cênica em cada ambiente.',
+  },
+  {
+    cover: kmObra6,
+    images: [kmObra6, kmObra5, kmObra1, kmObra3, kmObra2, kmObra4],
+    title: 'Obra K|M – Jardim Paulista/SP',
+    type: 'Gerenciamento e execução',
+    area: '350m²',
+    description: 'Residência ampla com ambientes integrados, acabamentos clean e design contemporâneo no coração do Jardim Paulista.',
   },
   {
     cover: portfolio1,
