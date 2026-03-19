@@ -12,6 +12,12 @@ import ogObra3 from '@/assets/og-obra-3.webp';
 import ogObra4 from '@/assets/og-obra-4.webp';
 import ogObra5 from '@/assets/og-obra-5.webp';
 import ogObra6 from '@/assets/og-obra-6.webp';
+import kmObra1 from '@/assets/km-obra-1.webp';
+import kmObra2 from '@/assets/km-obra-2.webp';
+import kmObra3 from '@/assets/km-obra-3.webp';
+import kmObra4 from '@/assets/km-obra-4.webp';
+import kmObra5 from '@/assets/km-obra-5.webp';
+import kmObra6 from '@/assets/km-obra-6.webp';
 
 interface PortfolioItem {
   cover: string;
