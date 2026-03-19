@@ -3,9 +3,6 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import portfolio1 from '@/assets/portfolio-1.jpg';
 import portfolio2 from '@/assets/portfolio-2.jpg';
 import portfolio3 from '@/assets/portfolio-3.jpg';
-import portfolio4 from '@/assets/portfolio-4.jpg';
-import portfolio5 from '@/assets/portfolio-5.jpg';
-import portfolio6 from '@/assets/portfolio-6.jpg';
 import ogObra1 from '@/assets/og-obra-1.webp';
 import ogObra2 from '@/assets/og-obra-2.webp';
 import ogObra3 from '@/assets/og-obra-3.webp';
@@ -18,6 +15,12 @@ import kmObra3 from '@/assets/km-obra-3.webp';
 import kmObra4 from '@/assets/km-obra-4.webp';
 import kmObra5 from '@/assets/km-obra-5.webp';
 import kmObra6 from '@/assets/km-obra-6.webp';
+import epObra1 from '@/assets/ep-obra-1.webp';
+import epObra2 from '@/assets/ep-obra-2.webp';
+import epObra3 from '@/assets/ep-obra-3.webp';
+import epObra4 from '@/assets/ep-obra-4.webp';
+import epObra5 from '@/assets/ep-obra-5.webp';
+import epObra6 from '@/assets/ep-obra-6.webp';
 
 interface PortfolioItem {
   cover: string;
@@ -46,6 +49,14 @@ const portfolioItems: PortfolioItem[] = [
     description: 'Residência ampla com ambientes integrados, acabamentos clean e design contemporâneo no coração do Jardim Paulista.',
   },
   {
+    cover: epObra5,
+    images: [epObra5, epObra4, epObra6, epObra3, epObra2, epObra1],
+    title: 'Obra E|P – Jardim Paulista/SP',
+    type: 'Gerenciamento e execução',
+    area: '250m²',
+    description: 'Apartamento sofisticado com mármore calacata, mobiliário de design autoral e iluminação indireta em todos os ambientes.',
+  },
+  {
     cover: portfolio1,
     images: [portfolio1],
     title: 'Reforma Residencial – São Paulo/SP',
@@ -68,30 +79,6 @@ const portfolioItems: PortfolioItem[] = [
     type: 'Reforma completa',
     area: '18m²',
     description: 'Banheiro de luxo com revestimentos importados.',
-  },
-  {
-    cover: portfolio4,
-    images: [portfolio4],
-    title: 'Suíte Principal – São Paulo/SP',
-    type: 'Reforma completa',
-    area: '45m²',
-    description: 'Suíte com closet integrado e iluminação planejada.',
-  },
-  {
-    cover: portfolio5,
-    images: [portfolio5],
-    title: 'Escritório Corporativo – São Paulo/SP',
-    type: 'Reforma comercial',
-    area: '200m²',
-    description: 'Espaço corporativo moderno e funcional.',
-  },
-  {
-    cover: portfolio6,
-    images: [portfolio6],
-    title: 'Varanda Gourmet – São Paulo/SP',
-    type: 'Reforma parcial',
-    area: '28m²',
-    description: 'Área gourmet com churrasqueira e bancada em granito.',
   },
 ];
 
