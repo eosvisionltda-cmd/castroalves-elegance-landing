@@ -33,8 +33,8 @@ interface PortfolioItem {
 
 const portfolioItems: PortfolioItem[] = [
   {
-    cover: ogObra3,
-    images: [ogObra3, ogObra1, ogObra2, ogObra4, ogObra5, ogObra6],
+    cover: ogObra5,
+    images: [ogObra5, ogObra1, ogObra2, ogObra3, ogObra4, ogObra6],
     title: 'Obra O|G – Itaim Bibi/SP',
     type: 'Gerenciamento e execução',
     area: '200m²',
@@ -55,30 +55,6 @@ const portfolioItems: PortfolioItem[] = [
     type: 'Execução',
     area: '250m²',
     description: 'Apartamento sofisticado com mármore calacata, mobiliário de design autoral e iluminação indireta em todos os ambientes.',
-  },
-  {
-    cover: portfolio1,
-    images: [portfolio1],
-    title: 'Reforma Residencial – São Paulo/SP',
-    type: 'Reforma completa',
-    area: '120m²',
-    description: 'Transformação completa de apartamento com acabamento premium.',
-  },
-  {
-    cover: portfolio2,
-    images: [portfolio2],
-    title: 'Cozinha Gourmet – São Paulo/SP',
-    type: 'Reforma parcial',
-    area: '35m²',
-    description: 'Projeto moderno com ilha central e marcenaria sob medida.',
-  },
-  {
-    cover: portfolio3,
-    images: [portfolio3],
-    title: 'Banheiro Master – Guarulhos/SP',
-    type: 'Reforma completa',
-    area: '18m²',
-    description: 'Banheiro de luxo com revestimentos importados.',
   },
 ];
 
