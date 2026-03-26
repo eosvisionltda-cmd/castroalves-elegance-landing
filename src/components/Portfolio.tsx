@@ -1,8 +1,5 @@
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import portfolio1 from '@/assets/portfolio-1.jpg';
-import portfolio2 from '@/assets/portfolio-2.jpg';
-import portfolio3 from '@/assets/portfolio-3.jpg';
 import ogObra1 from '@/assets/og-obra-1.webp';
 import ogObra2 from '@/assets/og-obra-2.webp';
 import ogObra3 from '@/assets/og-obra-3.webp';
