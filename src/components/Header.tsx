@@ -79,32 +79,39 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`lg:hidden fixed inset-0 top-0 bg-background/98 backdrop-blur-lg z-40 transition-all duration-500 ${
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
-          {navLinks.map((link, index) => (
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-background backdrop-blur-lg z-[60] flex flex-col"
+        >
+          <div className="flex items-center justify-end p-4">
             <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="text-foreground p-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Fechar menu"
             >
-              {link.label}
+              <X size={28} />
             </button>
-          ))}
-          <button
-            onClick={() => scrollToSection('#contato')}
-            className="btn-primary mt-4"
-          >
-            Solicitar Orçamento
-          </button>
+          </div>
+          <div className="flex flex-col items-center justify-center flex-1 gap-8">
+            {navLinks.map((link, index) => (
+              <button
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {link.label}
+              </button>
+            ))}
+            <button
+              onClick={() => scrollToSection('#contato')}
+              className="btn-primary mt-4"
+            >
+              Solicitar Orçamento
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };
