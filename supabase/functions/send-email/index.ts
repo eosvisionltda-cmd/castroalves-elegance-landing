@@ -91,6 +91,22 @@ serve(async (req) => {
       throw new Error(result.message || "Failed to send email");
     }
 
+    // Notificacao WhatsApp
+    try {
+      await fetch("https://castroalvesconstrucoes.com.br/notificar.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          source: data.source,
+        }),
+      });
+    } catch (_) {}
+
     return new Response(JSON.stringify({ success: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
