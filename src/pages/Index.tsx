@@ -7,6 +7,7 @@ import Solutions from '@/components/Solutions';
 import About from '@/components/About';
 import Portfolio from '@/components/Portfolio';
 import ContactForm from '@/components/ContactForm';
+import SocialNetworks from '@/components/SocialNetworks';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
@@ -28,6 +29,7 @@ const Index = () => {
       <Solutions />
       <About />
       <Portfolio />
+      <SocialNetworks />
       <ContactForm key={pathname} defaultService={service?.label} />
       <Footer />
       <WhatsAppButton />

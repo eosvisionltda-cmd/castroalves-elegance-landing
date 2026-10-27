@@ -19,6 +19,7 @@ const Header = () => {
     { href: '#quem-somos', label: 'Quem Somos' },
     { href: '#servicos', label: 'Nossos Serviços' },
     { href: '#portfolio', label: 'Portfólio' },
+    { href: '#redes-sociais', label: 'Redes sociais' },
     { href: '#contato', label: 'Contato' },
   ];
 
@@ -52,7 +53,7 @@ const Header = () => {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <button
               key={link.href}
