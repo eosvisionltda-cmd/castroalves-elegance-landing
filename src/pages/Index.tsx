@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getServicePage } from '@/lib/services';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Solutions from '@/components/Solutions';
@@ -14,6 +15,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 const Index = () => {
   const { pathname } = useLocation();
   const service = getServicePage(pathname);
+  const pageRef = useScrollReveal(pathname);
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = `${service?.title || 'Construção, reformas e gerenciamento de alto padrão'} | Castro Alves`;
@@ -23,7 +25,7 @@ const Index = () => {
     canonical?.setAttribute('href', `${window.location.origin}${pathname}`);
   }, [pathname, service]);
   return (
-    <main className="min-h-screen bg-background">
+    <main ref={pageRef} className="min-h-screen bg-background">
       <Header />
       <Hero service={service} />
       <Solutions />
