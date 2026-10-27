@@ -1,77 +1,31 @@
+import { Link } from 'react-router-dom';
+import { servicePages } from '@/lib/services';
 import serviceConstruction from '@/assets/service-construction.jpg';
 import serviceRenovation from '@/assets/service-renovation.jpg';
 import serviceManagement from '@/assets/service-management.jpg';
-import serviceProject from '@/assets/service-project.jpg';
-
-const solutions = [
-  {
-    title: 'Construção',
-    description: 'Edificações residenciais e comerciais de alto padrão',
-    image: serviceConstruction,
-  },
-  {
-    title: 'Obras e Reformas',
-    description: 'Transformação de espaços com excelência e sofisticação',
-    image: serviceRenovation,
-  },
-  {
-    title: 'Gerenciamento de Obras',
-    description: 'Gestão completa do seu projeto do início ao fim',
-    image: serviceManagement,
-  },
-  {
-    title: 'Projetos',
-    description: 'Desenvolvimento de projetos executivos com precisão técnica',
-    image: serviceProject,
-  },
-];
-
-const Solutions = () => {
-  return (
-    <section id="servicos" className="py-24 md:py-32 bg-background">
-      <div className="container-custom">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="section-title">Nossas Soluções</span>
-          <h2 className="section-heading mt-3 mb-4">
-            Gestão completa de obras com expertise em cada etapa
-          </h2>
-          <p className="section-subtitle mx-auto">
-            Do planejamento à execução, cuidamos de cada etapa da sua obra.
-          </p>
-        </div>
-
-        {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {solutions.map((solution, index) => (
-              <div
-                key={solution.title}
-                className="card-service group h-[400px] md:h-[500px] rounded-sm overflow-hidden"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                {/* Background Image */}
-              <img
-                  src={solution.image}
-                  alt={`${solution.title} de alto padrão em São Paulo - Castro Alves Construções`}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-
-                {/* Content */}
-                <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
-                  <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-2 transition-transform duration-300 group-hover:-translate-y-2">
-                    {solution.title}
-                  </h3>
-                  <p className="text-foreground/70 font-sans text-sm max-w-xs opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                    {solution.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-        </div>
+const images = [serviceConstruction, serviceRenovation, serviceManagement];
+const Solutions = () => (
+  <section id="servicos" className="py-24 md:py-32 bg-background scroll-mt-24">
+    <div className="container-custom">
+      <div className="text-center mb-12">
+        <span className="section-title">Nossas soluções</span>
+        <h2 className="section-heading mt-3 mb-4">O serviço certo para a etapa da sua obra</h2>
+        <p className="section-subtitle mx-auto">Construção, reforma e gerenciamento. Conheça cada frente e conte-nos o que você precisa.</p>
       </div>
-    </section>
-  );
-};
-
+      <div className="grid md:grid-cols-3 gap-6">
+        {Object.entries(servicePages).map(([path, service], index) => (
+          <Link key={path} to={path} className="group block bg-card border border-border rounded-sm overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
+            <img src={images[index]} alt={service.label} className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div className="p-6">
+              <h3 className="font-serif text-2xl text-foreground mb-3">{service.label}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{service.detail}</p>
+              <ul className="my-5 space-y-2 text-sm text-foreground/80">{service.points.map(point => <li key={point}>• {point}</li>)}</ul>
+              <span className="text-primary text-sm">Conhecer o serviço →</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 export default Solutions;

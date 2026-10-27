@@ -124,7 +124,7 @@ const Footer = () => {
           <p className="text-center mt-4 text-muted-foreground font-sans text-xs">
             Desenvolvido por{' '}
             <a
-              href="https://www.instagram.com/_eosvision/"
+              href="https://eosvision.com.br"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors underline"

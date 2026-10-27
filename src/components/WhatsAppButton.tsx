@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { X, MessageCircle, Send, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { trackEvent } from '@/lib/tracking';
 import { supabase } from '@/integrations/supabase/client';
 
 const whatsappSchema = z.object({
@@ -43,9 +44,10 @@ const WhatsAppButton = () => {
       const message = `Olá! Meu nome é ${data.name}.\nTelefone: ${data.phone}\nAssunto: ${data.subject}`;
       const phoneNumber = '5511980515092';
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+      trackEvent('whatsapp_click', { placement: 'floating_button' });
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
-      toast.success('Dados enviados! Abrindo WhatsApp...');
+      toast.success('Continue no WhatsApp para enviar sua mensagem.');
       reset();
       setIsOpen(false);
     } catch (err) {

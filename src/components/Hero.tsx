@@ -1,6 +1,10 @@
 import heroImage from '@/assets/hero-construction.jpg';
+import renovationImage from '@/assets/og-obra-1.webp';
+import managementImage from '@/assets/service-management.jpg';
+import { getServicePage } from '@/lib/services';
 
-const Hero = () => {
+const Hero = ({ service }: { service?: ReturnType<typeof getServicePage> }) => {
+  const backgroundImage = service?.label === 'Reforma' ? renovationImage : service?.label === 'Gerenciamento de obras' ? managementImage : heroImage;
   const scrollToContact = () => {
     const element = document.querySelector('#contato');
     if (element) {
@@ -13,7 +17,7 @@ const Hero = () => {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
@@ -29,10 +33,10 @@ const Hero = () => {
 
           {/* Title */}
           <h1
-            className="section-heading text-5xl md:text-6xl lg:text-7xl mb-6 animate-fade-up"
+            className="section-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 animate-fade-up"
             style={{ animationDelay: '0.2s' }}
           >
-            Construtora de Alto Padrão em São Paulo
+            {service?.title || 'Construção, reformas e gerenciamento de alto padrão'}
           </h1>
 
           {/* Subtitle */}
@@ -40,7 +44,7 @@ const Hero = () => {
             className="section-subtitle mx-auto mb-10 animate-fade-up"
             style={{ animationDelay: '0.3s' }}
           >
-            Projetos de alto padrão com excelência, sofisticação e rigor técnico.
+            {service?.description || 'Da execução ao acompanhamento da obra, cuidado em cada etapa do seu projeto em São Paulo e região. Conheça nossas entregas e converse com nossa equipe.'}
           </p>
 
           {/* CTA Buttons */}

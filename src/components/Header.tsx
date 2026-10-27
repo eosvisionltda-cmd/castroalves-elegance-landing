@@ -39,7 +39,7 @@ const Header = () => {
     >
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex-shrink-0">
+        <a href="/" className="flex-shrink-0">
           <img
             src={logo}
             alt="Castro Alves Construções"
@@ -72,7 +72,7 @@ const Header = () => {
         <button
           className="lg:hidden text-foreground p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Abrir menu" aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
