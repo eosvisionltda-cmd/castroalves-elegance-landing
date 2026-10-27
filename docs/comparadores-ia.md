@@ -21,4 +21,5 @@ Use case: precise-object-edit. Create one finished architectural visualization o
 
 ## Interação
 
-Controle nativo range: inicia em 50%, aceita mouse, toque e teclado. Imagens sobrepostas, recorte pela posição do controle. O gerenciamento mantém sua imagem, sem comparador.
+Controle nativo range: inicia em 50%. No computador, a divisória acompanha o mouse sem clicar. No celular, aceita arraste pelo toque. O teclado continua disponível. Imagens sobrepostas, recorte pela posição do controle. O gerenciamento mantém sua imagem, sem comparador.
+
