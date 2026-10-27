@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, Pause, Play } from 'lucide-react';
 import kitchen from '@/assets/og-obra-1.webp';
 import living from '@/assets/og-obra-3.webp';
 import bedroom from '@/assets/og-obra-6.webp';
@@ -15,12 +14,12 @@ const works = [
 
 const Hero = ({ service }: { service?: ReturnType<typeof getServicePage> }) => {
   const [active, setActive] = useState(0);
-  const [playing, setPlaying] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
   useEffect(() => {
-    if (!playing) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const timer = window.setInterval(() => setActive(index => (index + 1) % works.length), 6000);
     return () => window.clearInterval(timer);
-  }, [playing]);
+  }, []);
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   return (
     <section className="portfolio-mural" aria-label="Mural de obras executadas pela Castro Alves">
@@ -29,7 +28,6 @@ const Hero = ({ service }: { service?: ReturnType<typeof getServicePage> }) => {
           const work = works[(active + offset) % works.length];
           return <div className={`mural-panel mural-panel-${offset}`} key={offset}>
             <img key={work.image} src={work.image} alt={work.alt} className="mural-photo" fetchPriority={offset === 0 ? 'high' : 'auto'} />
-            <div className="mural-work-caption"><span>{work.title}</span><small>{work.place}</small></div>
           </div>;
         })}
       </div>
@@ -41,15 +39,6 @@ const Hero = ({ service }: { service?: ReturnType<typeof getServicePage> }) => {
         <div className="mural-actions">
           <button onClick={() => scrollTo('contato')} className="btn-primary">Solicitar orçamento</button>
           <button onClick={() => scrollTo('portfolio')} className="btn-outline">Conhecer as obras</button>
-        </div>
-      </div>
-      <div className="mural-bottom container-custom">
-        <p>Portfólio Castro Alves<span>Execução e gerenciamento</span></p>
-        <div className="mural-controls">
-          <span aria-live="off">0{active + 1}<span> / 04</span></span>
-          <button aria-label="Fotos anteriores do portfólio" onClick={() => { setPlaying(false); setActive((active + works.length - 1) % works.length); }}><ArrowLeft size={17} /></button>
-          <button aria-label={playing ? 'Pausar mural' : 'Reproduzir mural'} onClick={() => setPlaying(!playing)}>{playing ? <Pause size={15} /> : <Play size={15} />}</button>
-          <button aria-label="Próximas fotos do portfólio" onClick={() => { setPlaying(false); setActive((active + 1) % works.length); }}><ArrowRight size={17} /></button>
         </div>
       </div>
     </section>

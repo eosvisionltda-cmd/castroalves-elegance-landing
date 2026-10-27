@@ -10,7 +10,8 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,9 +32,10 @@ const Header = () => {
 
   return (
     <header
+      data-compact={isScrolled}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md py-3 shadow-lg'
+          ? 'bg-background/95 backdrop-blur-md py-1.5 shadow-lg'
           : 'bg-transparent py-4'
       }`}
     >
@@ -44,7 +46,7 @@ const Header = () => {
             src={logo}
             alt="Castro Alves Construções"
             className={`transition-all duration-500 ${
-              isScrolled ? 'h-16 md:h-20' : 'h-24 md:h-36'
+              isScrolled ? 'h-10 md:h-12' : 'h-24 md:h-36'
             }`}
           />
         </a>
@@ -62,7 +64,7 @@ const Header = () => {
           ))}
           <button
             onClick={() => scrollToSection('#contato')}
-            className="btn-primary text-xs px-6 py-3"
+            className={`btn-primary text-xs ${isScrolled ? "px-5 py-2" : "px-6 py-3"}`}
           >
             Solicitar Orçamento
           </button>
