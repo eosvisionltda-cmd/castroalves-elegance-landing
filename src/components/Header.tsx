@@ -1,119 +1,35 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import logo from '@/assets/logo-castro-alves.png';
-
+const links = [{ href: 'portfolio', label: 'Obras' }, { href: 'servicos', label: 'Atuação' }, { href: 'quem-somos', label: 'A Castro Alves' }];
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    handleScroll(); window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: '#quem-somos', label: 'Quem Somos' },
-    { href: '#servicos', label: 'Nossos Serviços' },
-    { href: '#portfolio', label: 'Portfólio' },
-    { href: '#contato', label: 'Contato' },
-  ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMobileMenuOpen(false);
-  };
-
+  useEffect(() => { setIsOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setIsOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen]);
+  const navigate = (id: string) => { setIsOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); };
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md py-3 shadow-lg'
-          : 'bg-transparent py-4'
-      }`}
-    >
-      <div className="container-custom flex items-center justify-between">
-        {/* Logo */}
-        <a href="/" className="flex-shrink-0">
-          <img
-            src={logo}
-            alt="Castro Alves Construções"
-            className={`transition-all duration-500 ${
-              isScrolled ? 'h-16 md:h-20' : 'h-24 md:h-36'
-            }`}
-          />
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => scrollToSection(link.href)}
-              className="nav-link"
-            >
-              {link.label}
-            </button>
-          ))}
-          <button
-            onClick={() => scrollToSection('#contato')}
-            className="btn-primary text-xs px-6 py-3"
-          >
-            Solicitar Orçamento
-          </button>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-foreground p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Abrir menu" aria-expanded={isMobileMenuOpen}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+    <header className={`luxury-header ${isScrolled ? 'luxury-header-scrolled' : ''}`}>
+      <div className="luxury-header-inner">
+        <a href="/" className="luxury-logo" aria-label="Castro Alves Construções, início"><img src={logo} alt="Castro Alves Construções" /></a>
+        <nav className="luxury-desktop-nav" aria-label="Navegação principal">{links.map(link => <button key={link.href} onClick={() => navigate(link.href)}>{link.label}</button>)}</nav>
+        <button className="luxury-header-contact" onClick={() => navigate('contato')}>Fale sobre seu projeto<ArrowUpRight size={15} /></button>
+        <button className="luxury-menu-toggle" aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={isOpen} aria-controls="mobile-navigation" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
       </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 bg-background backdrop-blur-lg z-[60] flex flex-col"
-        >
-          <div className="flex items-center justify-end p-4">
-            <button
-              className="text-foreground p-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-              aria-label="Fechar menu"
-            >
-              <X size={28} />
-            </button>
-          </div>
-          <div className="flex flex-col items-center justify-center flex-1 gap-8">
-            {navLinks.map((link, index) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-2xl font-serif text-foreground hover:text-primary transition-colors"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {link.label}
-              </button>
-            ))}
-            <button
-              onClick={() => scrollToSection('#contato')}
-              className="btn-primary mt-4"
-            >
-              Solicitar Orçamento
-            </button>
-          </div>
-        </div>
-      )}
+      {isOpen && <nav id="mobile-navigation" className="luxury-mobile-nav" aria-label="Navegação principal no celular">{links.map(link => <button key={link.href} onClick={() => navigate(link.href)}>{link.label}<ArrowUpRight size={18} /></button>)}<button onClick={() => navigate('contato')}>Fale sobre seu projeto<ArrowUpRight size={18} /></button></nav>}
     </header>
   );
 };
-
 export default Header;
