@@ -1,4 +1,9 @@
 import { Link } from 'react-router-dom';
+import BeforeAfter from '@/components/BeforeAfter';
+import renovationBefore from '@/assets/simulation-renovation-before.png';
+import renovationAfter from '@/assets/og-obra-1.webp';
+import constructionBefore from '@/assets/simulation-construction-before.png';
+import constructionAfter from '@/assets/simulation-construction-after.png';
 import { servicePages, getServicePage } from '@/lib/services';
 import { serviceSolutions } from '@/lib/service-solutions';
 import serviceConstruction from '@/assets/service-construction.jpg';
@@ -18,7 +23,15 @@ const Solutions = ({ service }: { service?: ReturnType<typeof getServicePage> })
             <p className="section-subtitle mx-auto !text-base leading-relaxed">{solution.intro}</p>
           </div>
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
-            <img src={image} alt={service.label + ' de alto padrão'} className="w-full h-64 md:h-80 object-cover rounded-sm" loading="lazy" />
+            {service.label === 'Reforma' ? (
+              <BeforeAfter key="renovation" before={renovationBefore} after={renovationAfter}
+                beforeAlt="Simulação com IA da cozinha antes dos acabamentos" afterAlt="Foto da cozinha finalizada do portfólio Castro Alves"
+                note="O antes é uma simulação criada com IA a partir da foto final do portfólio. Esta comparação não é um registro real de antes e depois da obra." />
+            ) : service.label === 'Construção' ? (
+              <BeforeAfter key="construction" before={constructionBefore} after={constructionAfter}
+                beforeAlt="Simulação ilustrativa de uma casa na etapa de estrutura" afterAlt="Simulação ilustrativa da mesma casa finalizada"
+                note="Imagens ilustrativas geradas com IA para demonstrar a evolução de uma construção. Não representam um registro de obra executada pela Castro Alves." />
+            ) : <img src={image} alt={service.label + ' de alto padrão'} className="w-full h-64 md:h-80 object-cover rounded-sm" loading="lazy" />}
             <div className="border-l-2 border-primary/60 pl-6 py-3">
               <h3 className="font-serif text-3xl mb-4">Para quem é esta solução</h3>
               <p className="text-foreground/80 text-base leading-relaxed">{solution.audience}</p>

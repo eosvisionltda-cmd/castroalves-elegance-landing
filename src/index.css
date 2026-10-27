@@ -297,3 +297,14 @@ section[id] { scroll-margin-top: 7rem; }
   html { scroll-behavior: auto; }
   .scroll-reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Native range: mouse, touch and keyboard share the same accessible control. */
+.comparison-frame { position: relative; isolation: isolate; width: 100%; aspect-ratio: 4 / 5; max-height: 620px; background: hsl(var(--card)); overflow: hidden; border: 1px solid hsl(var(--primary) / .4); border-radius: 2px; }
+.comparison-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none; }
+.comparison-before { position: absolute; inset: 0; }
+.comparison-label { position: absolute; top: 16px; padding: 6px 10px; background: hsl(var(--background) / .9); color: white; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; pointer-events: none; }
+.comparison-label-before { left: 12px; }.comparison-label-after { right: 12px; }
+.comparison-divider { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 10px #0005; }
+.comparison-divider > span { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 2px solid white; border-radius: 50%; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); box-shadow: 0 2px 12px #0005; }
+.comparison-input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; }
+.comparison-frame:focus-within { outline: 2px solid hsl(var(--primary)); outline-offset: 4px; }
