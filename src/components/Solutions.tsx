@@ -1,10 +1,46 @@
 import { Link } from 'react-router-dom';
-import { servicePages } from '@/lib/services';
+import { servicePages, getServicePage } from '@/lib/services';
+import { serviceSolutions } from '@/lib/service-solutions';
 import serviceConstruction from '@/assets/service-construction.jpg';
 import serviceRenovation from '@/assets/service-renovation.jpg';
 import serviceManagement from '@/assets/service-management.jpg';
 const images = [serviceConstruction, serviceRenovation, serviceManagement];
-const Solutions = () => (
+const Solutions = ({ service }: { service?: ReturnType<typeof getServicePage> }) => {
+  if (service) {
+    const solution = serviceSolutions[service.label];
+    const image = service.label === 'Construção' ? serviceConstruction : service.label === 'Reforma' ? serviceRenovation : serviceManagement;
+    return (
+      <section id="servicos" className="py-20 md:py-28 bg-background scroll-mt-24" aria-labelledby="solution-title">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="section-title">Solução</span>
+            <h2 id="solution-title" className="section-heading mt-3 mb-5">{solution.title}</h2>
+            <p className="section-subtitle mx-auto !text-base leading-relaxed">{solution.intro}</p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            <img src={image} alt={service.label + ' de alto padrão'} className="w-full h-64 md:h-80 object-cover rounded-sm" loading="lazy" />
+            <div className="border-l-2 border-primary/60 pl-6 py-3">
+              <h3 className="font-serif text-3xl mb-4">Para quem é esta solução</h3>
+              <p className="text-foreground/80 text-base leading-relaxed">{solution.audience}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-5">{solution.prompt}</p>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5" aria-label={'Como funciona: ' + service.label}>
+            {solution.steps.map((step, index) => <article key={step.title} className="service-step bg-card border border-border rounded-sm p-6 md:p-8">
+              <span className="text-primary text-xs tracking-widest">0{index + 1}</span>
+              <h3 className="font-serif text-2xl mt-3 mb-3">{step.title}</h3>
+              <p className="text-foreground/75 text-sm leading-relaxed">{step.text}</p>
+            </article>)}
+          </div>
+          <div className="text-center mt-10">
+            <p className="text-muted-foreground text-xs leading-relaxed mb-6 max-w-xl mx-auto">O escopo, as etapas e as responsabilidades são definidos após a análise da sua obra.</p>
+            <button className="btn-primary !text-xs" onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}>{solution.action}</button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  return (
   <section id="servicos" className="py-24 md:py-32 bg-background scroll-mt-24">
     <div className="container-custom">
       <div className="text-center mb-12">
@@ -28,4 +64,5 @@ const Solutions = () => (
     </div>
   </section>
 );
+};
 export default Solutions;

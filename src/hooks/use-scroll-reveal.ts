@@ -10,7 +10,7 @@ export function useScrollReveal(page: string) {
       'section:not(.portfolio-mural) .section-title',
       'section:not(.portfolio-mural) .section-heading',
       'section:not(.portfolio-mural) .section-subtitle',
-      '#servicos .grid > a', '#quem-somos .grid > div',
+      '#servicos .grid > a', '#servicos .service-step', '#quem-somos .grid > div',
       '#portfolio .portfolio-item', '#redes-sociais .container-custom > div', '#contato form',
     ];
     const elements = Array.from(container.querySelectorAll<HTMLElement>(selectors.join(',')));
@@ -34,7 +34,7 @@ export function useScrollReveal(page: string) {
       }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
       elements.forEach(element => {
         element.classList.add('scroll-reveal');
-        if (element.matches('#servicos .grid > a, #portfolio .portfolio-item')) {
+        if (element.matches('#servicos .grid > a, #servicos .service-step, #portfolio .portfolio-item')) {
           const siblings = Array.from(element.parentElement?.children || []);
           element.style.setProperty('--reveal-delay', `${(siblings.indexOf(element) % 3) * 80}ms`);
         }

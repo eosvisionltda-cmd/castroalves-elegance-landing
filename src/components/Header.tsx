@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getServicePage } from '@/lib/services';
 import { Menu, X } from 'lucide-react';
 import logo from '@/assets/logo-castro-alves.png';
 
 const Header = () => {
+  const { pathname } = useLocation();
+  const isServicePage = Boolean(getServicePage(pathname));
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -17,7 +21,7 @@ const Header = () => {
 
   const navLinks = [
     { href: '#quem-somos', label: 'Quem Somos' },
-    { href: '#servicos', label: 'Nossos Serviços' },
+    { href: '#servicos', label: isServicePage ? 'Solução' : 'Nossos Serviços' },
     { href: '#portfolio', label: 'Portfólio' },
     { href: '#redes-sociais', label: 'Redes sociais' },
     { href: '#contato', label: 'Contato' },

@@ -28,7 +28,7 @@ const Index = () => {
     <main ref={pageRef} className="min-h-screen bg-background">
       <Header />
       <Hero service={service} />
-      <Solutions />
+      <Solutions service={service} />
       <About />
       <Portfolio />
       <SocialNetworks />
